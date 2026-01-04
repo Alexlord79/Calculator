@@ -1,6 +1,10 @@
 package ru.hwdoc.calculator;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +23,27 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        EditText editTextAnswer = findViewById(R.id.editTextAnswer);
+        Button buttonAnswer = findViewById(R.id.buttonAnswer);
+        TextView textViewIncorrectAnswer = findViewById(R.id.textViewIncorrectAnswer);
+        TextView textViewCorrectAnswer = findViewById(R.id.textViewCorrectAnswer);
+        TextView textViewExample = findViewById(R.id.textViewExample);
+        textViewExample.setText("10 + 20 = ?");
+
+        buttonAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String text = editTextAnswer.getText().toString();
+                if (text.equals("30")) {
+                    textViewCorrectAnswer.setVisibility(View.VISIBLE);
+                    textViewIncorrectAnswer.setVisibility(View.INVISIBLE);
+                } else {
+                    textViewCorrectAnswer.setVisibility(View.INVISIBLE);
+                    textViewIncorrectAnswer.setVisibility(View.VISIBLE);
+                }
+            }
         });
     }
 }
